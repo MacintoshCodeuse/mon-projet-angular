@@ -1,20 +1,26 @@
-<div class="container">
+<div class="container p-4">
   <div class="row">
     <div class="col-xs-12">
-      <h2>Mes appareils</h2>
-      <p>Mis à jour : {{ lastUpdate | async | date: 'short' }}</p>
+      <h1>Mes appareils</h1>
+      <p class="text-muted font-italic">Mis à jour : {{ lastUpdate | async | date: 'short' }}</p>
       <ul class="list-group">
         <app-appareil
-          *ngFor="let appareil of appareils"
+          *ngFor="let appareil of appareils; let i = index"
             [appareilName] = "appareil.name"
-            [appareilStatus] = "appareil.status">
+            [appareilStatus] = "appareil.status"
+            [index] = "i">
         </app-appareil>
       </ul>
       <button
-        class="btn btn-success"
+        class="btn btn-success mt-2 mr-1"
         [disabled]="!isAuth"
         (click)="onAllumer()">
         Tout allumer</button>
+      <button
+        class="btn btn-danger mt-2"
+        [disabled]="!isAuth"
+        (click)="onEteindre()">
+        Tout éteindre</button>
     </div>
   </div>
 </div>
