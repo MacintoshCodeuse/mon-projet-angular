@@ -3,28 +3,27 @@ import { interval, Subscription } from 'rxjs';
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  secondes: number;
-  counterSubscription: Subscription;
+	secondes: number;
+	counterSubscription: Subscription;
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-    const counter = interval(1000);
-    this.counterSubscription = counter.subscribe(
-      (value: number) => {
-        this.secondes = value;
-      }
-    );
-  }
+	ngOnInit() {
+		const counter = interval(1000);
+		this.counterSubscription = counter.subscribe(
+			(value: number) => {
+				this.secondes = value;
+			}
+		);
+	}
 
-  ngOnDestroy() {
-    this.counterSubscription.unsubscribe();
-  }
-
+	ngOnDestroy() {
+		this.counterSubscription.unsubscribe();
+	}
 }
